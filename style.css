@@ -1,0 +1,77 @@
+:root{
+  --bg:#000;
+  --fg:#00ff66;
+  --muted:#0a3;
+  --accent:#0f6;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font:16px/1.6 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+  letter-spacing:0.02em;
+}
+a{color:var(--fg); text-decoration:none; border-bottom:1px dashed var(--muted)}
+a:hover{filter:brightness(1.25)}
+.wrapper{
+  min-height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+}
+.panel{
+  width:min(840px, 95vw);
+  border:1px solid var(--muted);
+  border-radius:12px;
+  padding:24px 28px 32px;
+  background:linear-gradient(180deg, rgba(0,255,102,0.03), rgba(0,255,102,0.01));
+  box-shadow:0 0 20px rgba(0,255,102,0.15), inset 0 0 32px rgba(0,255,102,0.05);
+}
+.hdr{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px}
+.hdr .title{font-weight:700; letter-spacing:0.06em; text-transform:uppercase}
+.termline{opacity:.85}
+.blink{
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink { 50%{opacity:0} }
+input[type="password"], input[type="text"]{
+  background:#001b0b;
+  color:var(--fg);
+  border:1px solid var(--muted);
+  border-radius:6px;
+  padding:10px 12px;
+  outline:none;
+  width:220px;
+}
+button{
+  background:#002a13;
+  color:var(--fg);
+  border:1px solid var(--muted);
+  padding:10px 14px;
+  border-radius:6px;
+  cursor:pointer;
+}
+button:hover{filter:brightness(1.2)}
+.error{color:#ff5a5a; margin-top:10px}
+.menu{display:flex; flex-direction:column; gap:14px; margin-top:12px}
+.menu a{
+  display:inline-block;
+  padding:10px 12px;
+  border:1px solid var(--muted);
+  border-radius:6px;
+  width:fit-content;
+  background:#001b0b;
+}
+.back{
+  position:fixed; top:14px; left:14px;
+  padding:6px 10px;
+  border:1px solid var(--muted);
+  border-radius:6px;
+  background:#001b0b;
+}
+.content{white-space:pre-line; margin-top:12px}
+img.responsive{max-width:100%; height:auto; display:block; margin-inline:auto}
+footer{margin-top:16px; opacity:.65; font-size:12px}

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrapper">
+    <div class="panel" id="panel">
+      <div class="hdr">
+        <div class="title">PANGOLIN — TERMINAL</div>
+        <div class="termline">tty:003 &nbsp; • &nbsp; user: stephen</div>
+      </div>
+
+      <!-- Password gate -->
+      <div id="gate">
+        <div class="termline">Password<span class="blink">_</span></div>
+        <form id="pwForm" autocomplete="off" style="margin-top:10px">
+          <label for="pw" class="sr-only" style="position:absolute;left:-9999px">Password</label>
+          <input type="password" id="pw" inputmode="numeric" placeholder="•••" autofocus>
+          <button type="submit">Enter</button>
+        </form>
+        <div id="err" class="error" style="display:none">Incorrect password.</div>
+      </div>
+
+      <!-- Terminal menu -->
+      <div id="terminal" style="display:none">
+        <div class="termline">Last login: Tue Oct 06 16:58:08 on ttys003</div>
+        <div class="termline">Pangolin:~$ <span>cat &gt; menu.txt</span></div>
+        <div class="menu">
+          <a href="logs.html">Logs</a>
+          <a href="confidencial.html">Confidencial. Nao abrir</a>
+        </div>
+        <footer>
+          Tip: use <code>&larr; Back</code> links on each page to return here.
+        </footer>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const gate = document.getElementById('gate');
+  const term = document.getElementById('terminal');
+  const form = document.getElementById('pwForm');
+  const input = document.getElementById('pw');
+  const err = document.getElementById('err');
+
+  function showTerminal(){
+    gate.style.display = 'none';
+    term.style.display = 'block';
+    // add a tiny transition glow
+    document.getElementById('panel').style.boxShadow = '0 0 28px rgba(0,255,102,0.35), inset 0 0 48px rgba(0,255,102,0.12)';
+  }
+
+  // Allow bypass when url contains #menu (for Back links)
+  if (location.hash === '#menu') {
+    showTerminal();
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if (input.value.trim() === '985') {
+      showTerminal();
+      // set hash so future reload stays on menu
+      if (location.hash !== '#menu') location.hash = '#menu';
+    } else {
+      err.style.display = 'block';
+      // simple shake
+      document.body.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:150,iterations:2});
+      input.select();
+    }
+  });
+})();
+</script>
+</body>
+</html>
